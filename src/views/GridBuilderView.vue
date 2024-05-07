@@ -3,7 +3,7 @@
     <div class="c-columns">
       <div class="col spaced">
         <draggable
-          class="dragArea list-group w-full"
+          class="draggable"
           :list="list1"
           :group="{ name: 'people', pull: 'clone', put: false }"
           :sort="true"
@@ -20,8 +20,9 @@
         </draggable>
       </div>
       <div class="col spaced">
+        
         <draggable
-          class="dragArea list-group w-full"
+          class="draggable"
           :list="list2"
           group="people"
           @change="log"
@@ -64,16 +65,14 @@ export default defineComponent({
     return {
       enabled: true,
       list1: [
+        { name: 'DRAG FROM HERE', id: 0 },
         { name: 'AAAAA', id: 1 },
         { name: 'BBBBB', id: 2 },
         { name: 'CCCCC', id: 3 },
         { name: 'DDDDD', id: 4 },
       ],
       list2: [
-        { name: '11111', id: 5 },
-        { name: '22222', id: 6 },
-        { name: '33333', id: 7 },
-        { name: '44444', id: 8 },
+        { name: 'DROP TO HERE', id: 9999999 },
       ],
       dragging: false,
     }

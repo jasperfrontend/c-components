@@ -113,15 +113,15 @@ pre {
   display: block;
 }
 
-/*
-.c-category {}
+.draggable div {
+  background-color: var(--gray-0);
+  text-align: center;
+  padding: var(--size-3);
+  margin: var(--size-1);
+  border-radius: var(--radius-conditional-3);
+  border: var(--border-size-1) solid var(--gray-1);
+}
 
-
-.c-columns {}
-
-
-
-.c-streamer-comment {}
-
-
-*/
+.draggable .sortable-chosen {
+  background-color: var(--yellow-8);
+}
