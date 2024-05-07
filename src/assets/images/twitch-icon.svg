@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 278 307" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g transform="matrix(1,0,0,1,-1139.77,-5344.47)">
+        <g transform="matrix(5.18519,0,0,1,-68807.4,4679.9)">
+            <g id="Twitch-Logo" serif:id="Twitch Logo" transform="matrix(0.11561,0,0,0.599457,13487,664.575)">
+                <path d="M391.17,103.47L352.54,103.47L352.54,213.17L391.17,213.17L391.17,103.47ZM285,103L246.37,103L246.37,212.75L285,212.75L285,103ZM120.83,0L24.31,91.42L24.31,420.58L140.14,420.58L140.14,512L236.67,420.58L313.92,420.58L487.69,256L487.69,0L120.83,0ZM449.07,237.75L371.85,310.87L294.61,310.87L227.01,374.87L227.01,310.87L140.14,310.87L140.14,36.58L449.07,36.58L449.07,237.75Z" style="fill:white;fill-rule:nonzero;"/>
+            </g>
+        </g>
+    </g>
+</svg>

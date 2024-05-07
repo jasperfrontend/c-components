@@ -1,0 +1,31 @@
+/**
+ * @description base.css contains all basic styling for buil-in HTML attributes. It also imports reset.css and Google Fonts
+ * @version 0.0.1
+ * @date 2024-05-06
+ * @author Jasper
+**/
+@import url('reset.css');
+@import url('data.css');
+@import url('https://unpkg.com/open-props');
+@import url('https://unpkg.com/open-props/buttons.min.css');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
+html, body {
+  font-family: "DM Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-style: normal;
+  background-color: #41306d;
+}
+h1,h2,h3,h4,h5,h6 {
+  color: var(--gray-0);
+}
+h1 {
+  font-size: var(--size-fluid-6);
+}
+h2 {
+  font-size: var(--size-fluid-5);
+}
+h3 {
+  font-size: var(--size-fluid-4);
+}
