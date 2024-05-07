@@ -1,5 +1,19 @@
 @import url('base.css');
 
+header {
+  display: flex;
+  justify-content: flex-end;
+}
+nav ul {
+  display: flex;
+}
+ul li {
+  list-style: none;
+}
+ul li a {
+  color: var(--gray-0);
+  padding: var(--size-7);
+}
 main {
   padding: var(--size-relative-5);
 }

@@ -3,6 +3,7 @@
 }
 * {
   margin: 0;
+  user-select: none;
 }
 body {
   line-height: 1.5;
