@@ -1,108 +1,54 @@
 <template>
-  <div class="flex justify-center">
-    <div class="c-columns">
-      <div class="col spaced">
-        <draggable
-          class="draggable"
-          :list="list1"
-          :group="{ name: 'people', pull: 'clone', put: false }"
-          :sort="true"
-          @change="log"
-          :move="checkMove"
-        >
-          <div
-            class="list-group-item bg-gray-300 m-1 p-3 rounded-md text-center"
-            v-for="element in list1"
-            :key="element.name"
-          >
-            {{ element.name }}
-          </div>
-        </draggable>
-      </div>
-      <div class="col spaced">
-        
-        <draggable
-          class="draggable"
-          :list="list2"
-          group="people"
-          @change="log"
-          :move="checkMove"
-        >
-          <div
-            class="list-group-item bg-gray-300 m-1 p-3 rounded-md text-center"
-            v-for="element in list2"
-            :key="element.name"
-          >
-            {{ element.name }}
-          </div>
-        </draggable>
-      </div>
-    </div>
-
-    <div class="c-columns">
-      <div class="col">
-        <rawDisplays class="w-64 mr-1" :value="list1" />
-      </div>
-      <div class="col">
-        <rawDisplays class="w-64" :value="list2" />
-      </div>
-    </div>
+  <div class="container">
+    <div
+      class="draggable"
+      ref="draggableRef"
+      :style="{ transform: `perspective(500px) translate3d(${state.x}px, ${state.y}px, 0)` }"
+    >Drag me</div>
   </div>
 </template>
 
+
+
 <script>
-import { defineComponent } from 'vue'
-import { VueDraggableNext } from 'vue-draggable-next'
-import rawDisplays from '@/components/rawDisplay.vue'
-export default defineComponent({
-  name: 'App',
-  components: {
-    draggable: VueDraggableNext,
-
-    rawDisplays,
-  },
-  data() {
-    return {
-      enabled: true,
-      list1: [
-        { name: 'DRAG FROM HERE', id: 0 },
-        { name: 'AAAAA', id: 1 },
-        { name: 'BBBBB', id: 2 },
-        { name: 'CCCCC', id: 3 },
-        { name: 'DDDDD', id: 4 },
-      ],
-      list2: [
-        { name: 'DROP TO HERE', id: 9999999 },
-      ],
-      dragging: false,
-    }
-  },
-  methods: {
-    add() {
-      console.log('add')
-    },
-    replace() {
-      console.log('replace')
-    },
-    checkMove(event) {
-      console.log('checkMove', event.draggedContext)
-      console.log('Future index: ' + event.draggedContext.futureIndex)
-    },
-    log(event) {
-      const { moved, added } = event
-
-      if (moved) console.log('moved', moved)
-      if (added) console.log('added', added, added.element)
-    },
-  },
-})
+import { useDraggable } from '@/useDraggable';
+export default {
+  setup() {
+    const { node, state } = useDraggable({ gridSize: 40 }); // Pass grid size
+    return { node, state }
+  }
+};
 </script>
-<style>
-.item-attribute {
-  padding: 10px;
-  border: 1px solid black;
+
+
+<style scoped>
+.container {
+    position: relative;
+    background-image:
+        linear-gradient(to right, rgb(203 213 225) 1px, transparent 1px),
+        linear-gradient(to bottom, rgb(203 213 225) 1px, transparent 1px);
+    background-size: 2.5rem 2.5rem;
+    width: 100%;
+    height: 24rem;
 }
-.clone-grid {
-  display: flex;
+
+.draggable {
+    background: rgb(203 213 225);
+    height: 5rem;
+    width: 7.5rem;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    /* Center the content */
+    align-items: center;
+    display: flex;
+    justify-content: center;
+
+    /* Indicate that the element is draggable */
+    cursor: move;
+    user-select: none;
+    touch-action: none;
 }
 </style>

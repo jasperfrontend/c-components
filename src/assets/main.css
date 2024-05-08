@@ -113,13 +113,10 @@ pre {
   display: block;
 }
 
-.draggable div {
+.draggable {
   background-color: var(--gray-0);
   text-align: center;
-  padding: var(--size-3);
-  margin: var(--size-1);
-  border-radius: var(--radius-conditional-3);
-  border: var(--border-size-1) solid var(--gray-1);
+  position: absolute;
 }
 
 .draggable .sortable-chosen {
