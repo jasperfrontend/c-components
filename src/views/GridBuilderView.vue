@@ -86,8 +86,10 @@ export default {
         linear-gradient(to right, rgb(203 213 225) 1px, transparent 1px),
         linear-gradient(to bottom, rgb(203 213 225) 1px, transparent 1px);
     background-size: 2.5rem 2.5rem;
-    width: 100%;
-    height: 24rem;
+    aspect-ratio: 9 / 16;
+    margin: 0 auto;
+    width: 30rem;
+    border-right: 1px solid rgb(203 213 225);
 }
 
 .draggable {
