@@ -35,9 +35,8 @@ import CGiphy from '@/components/CGiphy.vue'
 
 <style>
 .template {
-  position: relative;
-  z-index: 2;
   margin: 0 auto;
+  max-width: 400px;
 }
 .background {
   position: absolute;
