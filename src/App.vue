@@ -1,12 +1,12 @@
 <template>
-  <header>
+  <!-- <header>
     <nav>
       <ul>
-        <li><RouterLink to="/">Go to Home</RouterLink></li>
-        <li><RouterLink to="/builder">Go to Builder</RouterLink></li>
+        <li><RouterLink to="/">Home</RouterLink></li>
+        <li><RouterLink to="/1">One</RouterLink></li>
       </ul>
     </nav>
-  </header>
+  </header> -->
   <main>
     <RouterView />
   </main>

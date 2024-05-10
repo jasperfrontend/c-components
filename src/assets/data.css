@@ -250,13 +250,13 @@
 
 
 body [data-size="large"] {
-  padding: var(--size-7);
+  padding: var(--size-3);
 }
 body [data-size="medium"] {
-  padding: var(--size-4);
+  padding: var(--size-2);
 }
 body [data-size="small"] {
-  padding: var(--size-2);
+  padding: var(--size-1);
 }
 body [data-size="tiny"] {
   padding: var(--size-00);
