@@ -21,6 +21,7 @@ import CGiphy from '@/components/CGiphy.vue'
           <CPills orientation="vertical" skin="dark" time1="3pm CET" time2="11am EST" time3="SOON &trade;" />
         </div>
         <div class="col">
+          <CSpacer spacing="20" />
           <CGiphy giphy="xT0GqImestf7wXVkLC" />
         </div>
       </div>  
@@ -37,7 +38,7 @@ import CGiphy from '@/components/CGiphy.vue'
 .template {
   margin: 0 auto;
   max-height: 100vh;
-  aspect-ratio: 9 / 16;
+  aspect-ratio: 9 / 19.5;
 }
 .background {
   position: absolute;
@@ -57,9 +58,8 @@ import CGiphy from '@/components/CGiphy.vue'
   padding: var(--size-2);
 }
 .giphy-embed {
-  width: 100%;
+  max-width: 100%;
   margin: 0;
   padding: 0;
-  max-width: 213px;
 }
 </style>
