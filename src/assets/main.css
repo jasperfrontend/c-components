@@ -37,6 +37,7 @@ pre {
 .c-columns {
   display: flex;
   flex-flow: row nowrap;
+  align-items: center;
 }
 /* .c-columns .col {
   flex: 1;

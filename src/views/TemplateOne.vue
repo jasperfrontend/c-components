@@ -6,7 +6,8 @@ import CPills from '@/components/CPills.vue'
 import CStreamerName from '@/components/CStreamerName.vue'
 import CText from '@/components/CText.vue'
 import CSpacer from '@/components/CSpacer.vue'
-import CGiphy from '@/components/CGiphy.vue'
+// import CGiphy from '@/components/CGiphy.vue'
+import CImage from '@/components/CImage.vue'
 </script>
 
 <template>
@@ -22,7 +23,7 @@ import CGiphy from '@/components/CGiphy.vue'
         </div>
         <div class="col">
           <CSpacer spacing="20" />
-          <CGiphy giphy="xT0GqImestf7wXVkLC" />
+          <CImage image="https://api.memegen.link/images/atis/and_then_i_said/I_will_be_live_in_5_minutes.png" rotation="-8" />
         </div>
       </div>  
       <CSpacer spacing="20" />
