@@ -276,28 +276,28 @@ body [data-orientation="horizontal"] {
 
 
 body [data-text-size="large"] {
-  font-size: var(--size-fluid-4);
+  font-size: var(--size-7);
 }
 body [data-text-size="large"] svg {
-  min-width: var(--size-fluid-4);
+  min-width: var(--size-7);
 }
 body [data-text-size="medium"] {
-  font-size: var(--size-fluid-3);
+  font-size: var(--size-5);
 }
 body [data-text-size="medium"] svg {
-  min-width: var(--size-fluid-3);
+  min-width: var(--size-5);
 }
 body [data-text-size="small"] {
-  font-size: var(--size-fluid-2);
+  font-size: var(--size-4);
 }
 body [data-text-size="small"] svg {
-  min-width: var(--size-fluid-2);
+  min-width: var(--size-4);
 }
 body [data-text-size="tiny"] {
-  font-size: var(--size-fluid-1);
+  font-size: var(--size-3);
 }
 body [data-text-size="tiny"] svg {
-  min-width: var(--size-fluid-1);
+  min-width: var(--size-3);
 }
 
 .c-icon[data-size="tiny"] {
