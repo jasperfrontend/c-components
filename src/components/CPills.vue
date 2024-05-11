@@ -2,7 +2,14 @@
 export default {
   props: {
     orientation: String,
-    skin: String,
+    skin: {
+      type: String,
+      required: true,
+      default: "dim",
+      validator(value) {
+        return ['white', 'light', 'dim', 'dark'].includes(value)
+      },
+    },
     time1: String,
     time2: String,
     time3: String,

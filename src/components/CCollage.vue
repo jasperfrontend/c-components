@@ -1,10 +1,21 @@
 <script>
 export default {
   props: {
-    textSize: String,
+    textSize: {
+      type: [String, null],
+      required: true,
+      default: "medium",
+      validator(value) {
+        return ['tiny', 'small', 'medium', 'large'].includes(value)
+      },
+    },
     photo: String,
     categoryImage: String,
-    text: String
+    text: {
+      type: [String, null],
+      required: true,
+      default: "I am live soon! Come hang out!",
+    },
   },
   computed: {
     imgsize() {

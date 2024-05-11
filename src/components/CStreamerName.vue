@@ -2,8 +2,22 @@
 import { Icon } from '@iconify/vue';
 export default {
   props: {
-    textSize: String,
-    skin: String,
+    textSize: {
+      type: [String, null],
+      required: true,
+      default: "medium",
+      validator(value) {
+        return ['tiny', 'small', 'medium', 'large'].includes(value)
+      },
+    },
+    skin: {
+      type: String,
+      required: true,
+      default: "dim",
+      validator(value) {
+        return ['white', 'light', 'dim', 'dark'].includes(value)
+      },
+    },
     channel: String,
     icon: String,
   },

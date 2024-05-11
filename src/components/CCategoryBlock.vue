@@ -1,10 +1,32 @@
 <script>
 export default {
   props: {
-    skin: String,
-    textSize: String,
-    title: String,
-    text: String
+    skin: {
+      type: [String, null],
+      required: true,
+      default: "dim",
+      validator(value) {
+        return ['white', 'light', 'dim', 'dark'].includes(value)
+      },
+    },
+    textSize: {
+      type: [String, null],
+      required: true,
+      default: "medium",
+      validator(value) {
+        return ['tiny', 'small', 'medium', 'large'].includes(value)
+      },
+    },
+    title: {
+      type: [String, null],
+      required: true,
+      default: "Streaming:",
+    },
+    text: {
+      type: [String, null],
+      required: true,
+      default: "I am live soon! Come hang out!",
+    },
   }
 }
 </script>

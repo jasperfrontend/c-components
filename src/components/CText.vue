@@ -2,8 +2,19 @@
 export default {
   props: {
     textSize: String,
-    skin: String,
-    text: String
+    skin: {
+      type: String,
+      required: true,
+      default: "dim",
+      validator(value) {
+        return ['white', 'light', 'dim', 'dark'].includes(value)
+      },
+    },
+    text: {
+      type: [String, null],
+      required: true,
+      default: "I am live soon! Come hang out!",
+    },
   }
 }
 </script>

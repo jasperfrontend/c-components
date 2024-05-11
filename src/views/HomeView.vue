@@ -605,7 +605,7 @@ icon: any icones.js.org icon name, like mdi:twitch</pre>
 </template>
 
 <style>
-main .c {
+/* main .c {
   margin: var(--size-fluid-3);
-}
+} */
 </style>

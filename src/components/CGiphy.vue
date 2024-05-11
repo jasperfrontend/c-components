@@ -1,7 +1,8 @@
 <script>
 export default {
   props: {
-    giphy: String,
+    giphy: [String],
+    required: true,
   },
   computed: {
     giphysrc() {

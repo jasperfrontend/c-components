@@ -45,7 +45,7 @@
 
 <script>
 import { useDraggable } from '@/useDraggable';
-import { ref } from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue';
 
 // Import all components
 import CBar from '@/components/CBar.vue';
@@ -82,6 +82,13 @@ export default {
     ComponentPropsModal,
   },
   setup() {
+    const activeDraggable = ref(null);
+    const handleKeyDown = (event) => {
+      if (event.key === 'Delete' && activeDraggable.value && activeDraggable.value.classList.contains('draggable')) {
+        activeDraggable.value.remove();
+      }
+    };
+    
     const grids = 40;
     const { draggableRefs } = useDraggable({ gridSize: grids });
     const nextIndex = ref(draggableRefs.length);
@@ -130,13 +137,6 @@ export default {
         }
       };
 
-      const onMouseUp = () => {
-        document.removeEventListener('mousemove', onMouseMove);
-        document.removeEventListener('mouseup', onMouseUp);
-      };
-
-      document.addEventListener('mousemove', onMouseMove);
-      document.addEventListener('mouseup', onMouseUp);
     };
 
 
@@ -186,18 +186,16 @@ export default {
       showPropsModal.value = false;
     };
 
-    // onMounted(() => {
-    //   draggableRefs.value.forEach((draggableRef, index) => {
-    //     draggableRef.node.value.addEventListener('mousedown', (e) => handleMouseDown(index, e));
-    //   });
-    // });
+    onMounted(() => {
+      document.addEventListener('keydown', handleKeyDown);
+    });
 
-    // onUnmounted(() => {
-    //   draggableRefs.value.forEach((draggableRef, index) => {
-    //     draggableRef.node.value.removeEventListener('mousedown', (e) => handleMouseDown(index, e));
-    //   });
-    // });
+    onUnmounted(() => {
+      document.removeEventListener('keydown', handleKeyDown);
+    });
+
     return {
+      activeDraggable,
       draggableRefs,
       handleMouseDown,
       selectedComponent,
@@ -207,7 +205,9 @@ export default {
       getComponentProps,
       addComponentWithProps
     };
-  }
+    
+  },
+
 };
 </script>
 
@@ -233,11 +233,23 @@ export default {
   user-select: none;
   touch-action: none;
 }
+.vdr {
+	touch-action: none;
+	position: absolute;
+	box-sizing: border-box;
+	border: none;
+}
 .draggable * {
   user-select: none;
   touch-action: none;
 }
-
+.draggable .active.draggable {
+  box-shadow: 0 0 .25em rgba(255,255,255,.4);
+}
+.draggable .active.dragging.draggable {
+  background: none;
+  box-shadow: 0 0 1em rgba(255,255,255,.4);
+}
 .component-options,
 body .modal-content label {
   color: var(--gray-0);

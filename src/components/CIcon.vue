@@ -5,9 +5,20 @@ export default {
     Icon
   },
   props: {
-    skin: String,
+    skin: {
+      type: String,
+      required: true,
+      default: "dim",
+      validator(value) {
+        return ['white', 'light', 'dim', 'dark'].includes(value)
+      },
+    },
     size: String,
-    icon: String,
+    icon: {
+      type: String,
+      required: true,
+      default: "mdi:twitch",
+    },
     iconSize: String
   },
 }
