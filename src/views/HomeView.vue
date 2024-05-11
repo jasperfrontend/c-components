@@ -603,3 +603,9 @@ icon: any icones.js.org icon name, like mdi:twitch</pre>
     </div>
   </div>
 </template>
+
+<style>
+main .c {
+  margin: var(--size-fluid-3);
+}
+</style>

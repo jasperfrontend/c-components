@@ -215,7 +215,7 @@ export default {
 .container {
   position: relative;
   aspect-ratio: 9 / 16;
-  margin: 0 auto;
+  margin: var(--size-4) auto;
   width: 30rem;
 }
 
@@ -244,6 +244,9 @@ body .modal-content label {
 }
 .component-options {
   padding: var(--size-3);
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 .component-options label {
   display: block;

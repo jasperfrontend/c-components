@@ -50,3 +50,6 @@ button {
 button:hover {
   background-color: var(--blue-9);
 }
+main {
+  padding: var(--size-fluid-3);
+}

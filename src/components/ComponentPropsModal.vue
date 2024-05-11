@@ -2,6 +2,7 @@
   <div class="modal">
     <div class="modal-content">
       <h2>{{ componentName }}</h2>
+      <p><a href="/" target="_blank">View all options</a></p>
       <!-- Render input fields for each prop -->
       <div v-for="prop in componentProps" :key="prop">
         <label :for="prop">{{ prop }}:</label>
@@ -46,5 +47,7 @@ export default {
   color: var(--gray-1);
   padding: var(--size-2);
 }
-
+.modal-content a {
+  color: var(--yellow-4);
+}
 </style>
