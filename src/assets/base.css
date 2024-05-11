@@ -34,3 +34,19 @@ h2 {
 h3 {
   font-size: var(--size-fluid-4);
 }
+label {
+  width: 100%;
+  display: block;
+  margin-top: var(--size-2);
+  padding-bottom: var(--size-1);
+}
+button {
+  color: var(--blue-1);
+  background-color: var(--blue-8);
+  border: 1px solid var(--blue-1);
+  margin: var(--size-2) 0;
+  padding: var(--size-2) var(--size-4);
+}
+button:hover {
+  background-color: var(--blue-9);
+}

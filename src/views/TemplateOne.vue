@@ -14,23 +14,57 @@ import CImage from '@/components/CImage.vue'
   <div class="template">
     <div class="background"></div>
     <div class="core">
-      <CCategoryBlock skin="dark" text-size="large" title="I'm on my bike!" text="Cycling around Great Britain. Currently in the Kent region." />
+      <CCategoryBlock 
+        skin="dark" 
+        text-size="large" 
+        title="I'm on my bike!" 
+        text="Cycling around Great Britain. Currently in the Kent region." />
       <CSpacer spacing="20" />
-      <CBar type="bar" skin="dark" size="medium" text-size="medium" icon="mdi:twitch" text="Live on Twitch soon!" />
+      <CBar 
+        type="bar" 
+        skin="dark" 
+        size="medium" 
+        text-size="medium" 
+        icon="mdi:twitch" 
+        text="Live on Twitch soon!" />
       <div class="c-columns">
         <div class="col">
-          <CPills orientation="vertical" skin="dark" time1="3pm CET" time2="11am EST" time3="SOON &trade;" />
+          <CPills 
+            orientation="vertical" 
+            skin="dark" 
+            time1="3pm CET" 
+            time2="11am EST" 
+            time3="SOON &trade;" />
         </div>
         <div class="col">
           <CSpacer spacing="20" />
-          <CImage image="https://api.memegen.link/images/atis/and_then_i_said/I_will_be_live_in_5_minutes.png" rotation="-8" />
+          <CImage 
+            image="https://api.memegen.link/images/atis/and_then_i_said/I_will_be_live_in_5_minutes.png" 
+            rotation="-8" />
         </div>
       </div>  
       <CSpacer spacing="20" />
-      <CLine type="dotted" color="white" width="100%" height="4px" spacing="10px" />
-      <CText text-size="medium" skin="white" text="Trying to ride 60 miles today on this raggedy-ass bike. Wish me luck!" />
-      <CLine type="dotted" color="white" width="100%" height="4px" spacing="10px" />
-      <CStreamerName text-size="large" skin="white" channel="/RideTheLine" icon="mdi:twitch" />
+      <CLine 
+        type="dotted" 
+        color="white" 
+        width="100%" 
+        height="4px" 
+        spacing="10px" />
+      <CText 
+        text-size="medium" 
+        skin="white" 
+        text="Trying to ride 60 miles today on this raggedy-ass bike. Wish me luck!" />
+      <CLine 
+        type="dotted" 
+        color="white" 
+        width="100%" 
+        height="4px" 
+        spacing="10px" />
+      <CStreamerName 
+        text-size="large" 
+        skin="white" 
+        channel="/RideTheLine" 
+        icon="mdi:twitch" />
     </div>
   </div>
 </template>
