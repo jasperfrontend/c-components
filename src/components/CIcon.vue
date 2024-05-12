@@ -8,9 +8,9 @@ export default {
     skin: {
       type: String,
       required: true,
-      default: "dim",
+      default: "plain",
       validator(value) {
-        return ['white', 'light', 'dim', 'dark'].includes(value)
+        return ['plain','white', 'light', 'dim', 'dark'].includes(value)
       },
     },
     size: String,

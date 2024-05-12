@@ -1,7 +1,11 @@
 <script>
-
+export default {
+  props: {
+    streamCategory: String,
+  }
+}
 </script>
 
 <template>
-  <p>I am your Stream category</p>
+  <p>{{ streamCategory }}</p>
 </template>

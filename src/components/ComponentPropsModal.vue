@@ -3,10 +3,9 @@
     <div class="modal-content">
       <h2>{{ componentName }}</h2>
       <p><a href="/" target="_blank">View all options</a></p>
-      <!-- Render input fields for each prop -->
-      <div v-for="prop in componentProps" :key="prop">
-        <label :for="prop">{{ prop }}:</label>
-        <input :id="prop" v-model="props[prop]" />
+      <div v-for="propName in Object.keys(componentProps)" :key="propName">
+        <label :for="propName">{{ propName }}:</label>
+        <input :id="propName" v-model="props[propName]" />
       </div>
       <button @click="confirmProps">Confirm</button>
     </div>
@@ -17,7 +16,7 @@
 export default {
   props: {
     componentName: String,
-    componentProps: Array
+    componentProps: Object
   },
   data() {
     return {
@@ -26,9 +25,11 @@ export default {
   },
   methods: {
     confirmProps() {
+      console.log(this.props);
       this.$emit('props-confirmed', this.props);
     }
-  }
+  },
+  emits: ['props-confirmed'] // Declare the emitted event
 };
 </script>
 

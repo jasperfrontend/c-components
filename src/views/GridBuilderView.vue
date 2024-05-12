@@ -28,7 +28,7 @@
         :y="0"
         :parent="limitDraggingToContainer"
       >
-        <component :is="draggableRef.component" v-bind="draggableRef.props" />
+        <componentMap[draggableRef.component] v-bind="draggableRef.props" />
       </vue-draggable-resizable>
     </div>
     <div class="options">
@@ -41,13 +41,11 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import { useDraggable } from '@/useDraggable';
 import { ref } from 'vue';
-
 import domtoimage from 'dom-to-image';
 
-// Import all components
 import CBar from '@/components/CBar.vue';
 import CCategory from '@/components/CCategory.vue';
 import CCategoryBlock from '@/components/CCategoryBlock.vue';
@@ -61,129 +59,64 @@ import CSpacer from '@/components/CSpacer.vue';
 import CStreamCategory from '@/components/CStreamCategory.vue';
 import CStreamerName from '@/components/CStreamerName.vue';
 import CText from '@/components/CText.vue';
-
 import ComponentPropsModal from '@/components/ComponentPropsModal.vue';
 
-export default {
-  components: {
-    CBar,
-    CCategory,
-    CCategoryBlock,
-    CCollage,
-    CGiphy,
-    CIcon,
-    CImage,
-    CLine,
-    CPills,
-    CSpacer,
-    CStreamCategory,
-    CStreamerName,
-    CText,
-    ComponentPropsModal,
-  },
-  setup() {    
-    const grids = 20;
-    const { draggableRefs } = useDraggable({ gridSize: grids });
-    const nextIndex = ref(draggableRefs.length);
+// Define a map of component names to their respective components
+const componentMap = {
+  CBar,
+  CCategory,
+  CCategoryBlock,
+  CCollage,
+  CGiphy,
+  CIcon,
+  CImage,
+  CLine,
+  CPills,
+  CSpacer,
+  CStreamCategory,
+  CStreamerName,
+  CText,
+};
 
-    const selectedComponent = ref(null);
-    const componentOptions = [
-      'CBar',
-      'CCategory',
-      'CCategoryBlock',
-      'CCollage',
-      'CGiphy',
-      'CIcon',
-      'CImage',
-      'CLine',
-      'CPills',
-      'CSpacer',
-      'CStreamCategory',
-      'CStreamerName',
-      'CText',
-    ];
+function getComponentProps(componentName) {
+  const component = componentMap[componentName];
+  if (component) {
+    return component.props || {};
+  }
+  return {};
+}
 
-    const showPropsModal = ref(false);
-    const openPropsModal = () => {
-      showPropsModal.value = true;
-    };
 
-    const getComponentProps = (component) => {
-      // Return props for the selected component
-      switch (component) {
-        case 'CBar':
-          return ['type', 'skin', 'size', 'textSize', 'icon', 'text'];
-        case 'CCategory':
-          return ['skin', 'textSize', 'text'];
-        case 'CCategoryBlock':
-          return ['skin', 'textSize', 'title', 'text'];
-        case 'CCollage':
-          return ['textSize', 'photo', 'categoryImage', 'text'];
-        case 'CGiphy':
-          return ['giphy'];
-        case 'CIcon':
-          return ['skin', 'size', 'icon', 'iconSize'];
-        case 'CImage':
-          return ['image', 'rotation'];
-        case 'CLine':
-          return ['type', 'color', 'width', 'height', 'spacing'];
-        case 'CPills':
-          return ['orientation', 'skin', 'time1', 'time2', 'time3'];
-        case 'CSpacer':
-          return ['spacing'];
-        case 'CStreamCategory':
-          return ['textSize', 'skin', 'channel', 'icon'];
-        case 'CStreamerName':
-          return ['textSize', 'skin', 'channel', 'icon'];
-        case 'CText':
-          return ['textSize', 'skin', 'text'];
-        default:
-          return [];
-      }
-    };
+const componentOptions = Object.keys(componentMap);
 
-    const addComponentWithProps = (props) => {
-      // Add the selected component to the grid with provided props
-      draggableRefs.value.push({ x: 0, y: 0, component: selectedComponent.value, props });
-      nextIndex.value++;
-      showPropsModal.value = false;
-    };
+const selectedComponent = ref(null);
+const showPropsModal = ref(false);
 
-    return {
-      draggableRefs,
-      selectedComponent,
-      componentOptions,
-      showPropsModal,
-      openPropsModal,
-      getComponentProps,
-      addComponentWithProps
-    };
-    
-  },
-  methods: {
-    captureScreenshot() {
-      // Get the container node
-      var node = document.getElementById('screenshot');
+const { draggableRefs } = useDraggable({ gridSize: 20 });
+const limitDraggingToContainer = ref(true);
 
-      // Use dom-to-image to capture the screenshot
-      domtoimage.toJpeg(node, { quality: 1.0 })
-          .then(function (dataUrl) {
-            var link = document.createElement('a');
-            link.download = 'share-this-on-social-media.jpeg';
-            link.href = dataUrl;
-            link.click();
-        })
-        .catch(function (error) {
-          // Handle any errors that occur during the process
-          console.error('Oops, something went wrong!', error);
-        });
-    }
-  },
-  data() {
-    return {
-      limitDraggingToContainer: true
-    };
-  },
+const openPropsModal = () => {
+  showPropsModal.value = true;
+};
+
+const addComponentWithProps = (props) => {
+  console.log(props);
+  draggableRefs.value.push({ x: 0, y: 0, component: selectedComponent.value, props });
+  showPropsModal.value = false;
+};
+
+const captureScreenshot = () => {
+  const node = document.getElementById('screenshot');
+  domtoimage.toJpeg(node, { quality: 1.0 })
+    .then((dataUrl) => {
+      const link = document.createElement('a');
+      link.download = 'share-this-on-social-media.jpeg';
+      link.href = dataUrl;
+      link.click();
+    })
+    .catch((error) => {
+      console.error('Oops, something went wrong!', error);
+    });
 };
 </script>
 

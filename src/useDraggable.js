@@ -1,4 +1,3 @@
-// useDraggable.js
 import { ref } from 'vue';
 
 export const useDraggable = ({ gridSize }) => {
