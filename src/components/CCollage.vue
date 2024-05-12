@@ -47,14 +47,14 @@ export default {
   <div class="c c-collage" data-skin="white" :data-text-size="textSize">
     <div class="c-columns">
       <div class="col">
-        <span class="c-streamer-profile-pic">
+        <div class="c-streamer-profile-pic">
           <img :src="photo" alt="" :style="imgsize">
-        </span>
-      </div>
-      <div class="col">
+        </div>
         <div class="c-stream-category">
           <img :src="categoryImage" alt="" :style="imgsize">
         </div>
+      </div>
+      <div class="col">
         <div class="c-streamer-comment">
           <div class="text">
             {{ text }}
@@ -64,3 +64,22 @@ export default {
     </div>
   </div>
 </template>
+
+<style>
+.c-collage .text {
+  background-color: var(--gray-0);
+  color: var(--gray-12);
+  padding: var(--size-fluid-2) var(--size-fluid-2);
+}
+
+.c-streamer-profile-pic {
+  min-width: 120px;
+}
+.col:has(.c-streamer-profile-pic) {
+  flex-grow: 0;
+}
+.col:has(> .c-streamer-comment) {
+  display: flex;
+  align-self: stretch;
+}
+</style>

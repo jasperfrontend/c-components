@@ -1,5 +1,4 @@
 <script setup>
-
 import CBar from '@/components/CBar.vue'
 import CCategory from '@/components/CCategory.vue'
 import CCategoryBlock from '@/components/CCategoryBlock.vue'
@@ -11,6 +10,15 @@ import CText from '@/components/CText.vue'
 
 </script>
 <template>
+  <header>
+    <nav>
+      <ul>
+        <li><RouterLink to="/">Home</RouterLink></li>
+        <li><RouterLink to="/1">One</RouterLink></li>
+        <li><RouterLink to="/builder">Builder</RouterLink></li>
+      </ul>
+    </nav>
+  </header>
   <article>
     <h2>Cbar</h2>
     <h3>type: plain</h3>

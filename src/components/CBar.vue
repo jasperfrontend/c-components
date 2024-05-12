@@ -71,3 +71,17 @@ export default {
     </div>
   </div>
 </template>
+
+<style>
+.c-bar {
+  overflow: hidden;
+  box-shadow: var(--inner-shadow-2), var(--shadow-1);
+  height: 100%;
+  display: flex;
+}
+
+.c-bar > .c-columns > .col > .icon > svg {
+  margin-right: var(--size-2);
+  max-width: var(--size-relative-7);
+}
+</style>

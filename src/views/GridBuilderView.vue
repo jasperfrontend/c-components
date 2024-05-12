@@ -17,35 +17,35 @@
       :component-props="getComponentProps(selectedComponent)"
       @props-confirmed="addComponentWithProps"
     />
-    <div class="container" ref="container"
-      :style="{
-      position: 'relative',
-      backgroundColor: '#808080',
-      background: 'linear-gradient(-90deg, rgba(0, 0, 0, .1) 1px, transparent 1px), linear-gradient(rgba(0, 0, 0, .1) 1px, transparent 1px)',
-      backgroundSize: '20px 20px, 20px 20px',
-    }">
-      <div
+    <div class="container" id="screenshot" ref="container">
+      <vue-draggable-resizable
         v-for="(draggableRef, index) in draggableRefs"
         :key="index"
         class="draggable"
         ref="draggableElements"
-        >
-        <vue-draggable-resizable
-          :grid="[20, 20]"
-          :x="0"
-          :y="0"
-        >
-          <component :is="draggableRef.component" v-bind="draggableRef.props" />
-        </vue-draggable-resizable>
-      </div>
+        :grid="[20, 20]"
+        :x="0"
+        :y="0"
+        :parent="limitDraggingToContainer"
+      >
+        <component :is="draggableRef.component" v-bind="draggableRef.props" />
+      </vue-draggable-resizable>
     </div>
-
+    <div class="options">
+      <label>
+        Limit dragging to the grid
+        <input type="checkbox" v-model="limitDraggingToContainer">
+      </label>
+      <button @click="captureScreenshot">Capture Screenshot</button>
+    </div>
   </div>
 </template>
 
 <script>
 import { useDraggable } from '@/useDraggable';
-import { ref, onMounted, onUnmounted } from 'vue';
+import { ref } from 'vue';
+
+import domtoimage from 'dom-to-image';
 
 // Import all components
 import CBar from '@/components/CBar.vue';
@@ -81,18 +81,10 @@ export default {
     CText,
     ComponentPropsModal,
   },
-  setup() {
-    const activeDraggable = ref(null);
-    const handleKeyDown = (event) => {
-      if (event.key === 'Delete' && activeDraggable.value && activeDraggable.value.classList.contains('draggable')) {
-        activeDraggable.value.remove();
-      }
-    };
-    
-    const grids = 40;
+  setup() {    
+    const grids = 20;
     const { draggableRefs } = useDraggable({ gridSize: grids });
     const nextIndex = ref(draggableRefs.length);
-    const draggableElements = ref([]);
 
     const selectedComponent = ref(null);
     const componentOptions = [
@@ -112,35 +104,6 @@ export default {
     ];
 
     const showPropsModal = ref(false);
-
-    const handleMouseDown = (index, e) => {
-      const startX = e.clientX;
-      const startY = e.clientY;
-      const startLeft = draggableRefs.value[index].x;
-      const startTop = draggableRefs.value[index].y;
-
-      const onMouseMove = (e) => {
-        const deltaX = e.clientX - startX;
-        const deltaY = e.clientY - startY;
-
-        const newX = startLeft + deltaX;
-        const newY = startTop + deltaY;
-
-        const snappedX = Math.round(newX / grids) * grids;
-        const snappedY = Math.round(newY / grids) * grids;
-
-        draggableRefs.value[index].x = snappedX;
-        draggableRefs.value[index].y = snappedY;
-
-        if (draggableElements.value[index]) {
-          draggableElements.value[index].style.transform = `translate3d(${snappedX}px, ${snappedY}px, 0)`;
-        }
-      };
-
-    };
-
-
-
     const openPropsModal = () => {
       showPropsModal.value = true;
     };
@@ -186,18 +149,8 @@ export default {
       showPropsModal.value = false;
     };
 
-    onMounted(() => {
-      document.addEventListener('keydown', handleKeyDown);
-    });
-
-    onUnmounted(() => {
-      document.removeEventListener('keydown', handleKeyDown);
-    });
-
     return {
-      activeDraggable,
       draggableRefs,
-      handleMouseDown,
       selectedComponent,
       componentOptions,
       showPropsModal,
@@ -207,7 +160,30 @@ export default {
     };
     
   },
+  methods: {
+    captureScreenshot() {
+      // Get the container node
+      var node = document.getElementById('screenshot');
 
+      // Use dom-to-image to capture the screenshot
+      domtoimage.toJpeg(node, { quality: 1.0 })
+          .then(function (dataUrl) {
+            var link = document.createElement('a');
+            link.download = 'share-this-on-social-media.jpeg';
+            link.href = dataUrl;
+            link.click();
+        })
+        .catch(function (error) {
+          // Handle any errors that occur during the process
+          console.error('Oops, something went wrong!', error);
+        });
+    }
+  },
+  data() {
+    return {
+      limitDraggingToContainer: true
+    };
+  },
 };
 </script>
 
@@ -215,8 +191,13 @@ export default {
 .container {
   position: relative;
   aspect-ratio: 9 / 16;
-  margin: var(--size-4) auto;
-  width: 30rem;
+  margin: 0 auto;
+  width: 480px;
+  border: 1px solid rgba(0,0,0,.1);
+  position: relative; 
+  background: 
+    linear-gradient(-90deg, rgba(0, 0, 0, 0.1) 1px, transparent 1px) 0% 0% / 20px 20px, 
+    linear-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px) 0% 0% / 20px 20px;
 }
 
 .draggable {
@@ -243,20 +224,20 @@ export default {
   user-select: none;
   touch-action: none;
 }
-.draggable .active.draggable {
+.draggable.active.draggable {
   box-shadow: 0 0 .25em rgba(255,255,255,.4);
 }
-.draggable .active.dragging.draggable {
+.draggable.active.dragging.draggable {
   background: none;
   box-shadow: 0 0 1em rgba(255,255,255,.4);
 }
 .component-options,
-body .modal-content label {
+label {
   color: var(--gray-0);
 }
 .component-options {
   padding: var(--size-3);
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
 }
@@ -266,5 +247,10 @@ body .modal-content label {
 }
 .button-container {
   margin-top: var(--size-2);
+}
+.options {
+  position: fixed;
+  bottom: 0;
+  left: 0;
 }
 </style>
