@@ -1,7 +1,14 @@
 <script>
 export default {
   props: {
-    orientation: String,
+    orientation: {
+      type: String,
+      required: true,
+      default: "horizontal",
+      validator(value) {
+        return ['horizontal', 'vertical'].includes(value)
+      },
+    },
     skin: {
       type: String,
       required: true,

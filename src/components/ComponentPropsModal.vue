@@ -5,7 +5,8 @@
       <p><a href="/" target="_blank">View all options</a></p>
       <div v-for="propName in Object.keys(componentProps)" :key="propName">
         <label :for="propName">{{ propName }}:</label>
-        <input :id="propName" v-model="props[propName]" />
+        <input :id="propName" v-model="props[propName]" :placeholder="componentProps[propName].default" />
+        <p style="font-size: 12px; font-weight: normal; padding-top: 5px; padding-bottom: 10px; color: var(--gray-0);" v-html="componentProps[propName].info"></p>
       </div>
       <button @click="confirmProps">Confirm</button>
     </div>
@@ -32,7 +33,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .modal {
   background: #151515;
   background: rgba(15,15,15,.5);
@@ -43,11 +44,13 @@ export default {
   left: var(--size-2);
   width: var(--size-15);
 }
+
 .modal-content {
   color: var(--gray-1);
   padding: var(--size-2);
 }
-.modal-content a {
-  color: var(--yellow-4);
+.modal-content a,
+.modal-content p a {
+  color: var(--yellow-4) !important;
 }
 </style>

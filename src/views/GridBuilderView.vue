@@ -24,21 +24,27 @@
         :key="`draggable-${index}-${draggableRef.component}`"
         class="draggable"
         ref="draggableElements"
-        :grid="[20, 20]"
+        :grid="[20,20]"
         :x="0"
         :y="0"
         :parent="limitDraggingToContainer"
       >
-        <component :is="componentMap[draggableRef.component]" v-bind="componentMap[draggableRef.props]"></component>
+        <component :is="componentMap[draggableRef.component]" v-bind="draggableRef.props"></component>
       </vue-draggable-resizable>
 
     </div>
     <div class="options">
-      <label>
-        Limit dragging to the grid
-        <input type="checkbox" v-model="limitDraggingToContainer">
-      </label>
-      <button @click="captureScreenshot">Capture Screenshot</button>
+      <div class="option">
+        <label>
+          Limit dragging to the grid
+          <input type="checkbox" v-model="limitDraggingToContainer">
+        </label>
+      </div>
+      <div class="option">
+        <label>
+          <button @click="captureScreenshot">Capture Screenshot</button>
+        </label>
+      </div>
     </div>
   </div>
 </template>

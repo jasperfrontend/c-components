@@ -1,7 +1,14 @@
 <script>
 export default {
   props: {
-    textSize: String,
+    textSize: {
+      type: String,
+      required: true,
+      default: "medium",
+      validator(value) {
+        return ['tiny','small', 'medium', 'large'].includes(value)
+      },
+    },
     skin: {
       type: String,
       required: true,

@@ -8,18 +8,36 @@ export default {
     skin: {
       type: String,
       required: true,
-      default: "plain",
+      default: "white",
+      info: "plain (for coloured icons), white, light, dim or dark",
       validator(value) {
-        return ['plain','white', 'light', 'dim', 'dark'].includes(value)
+        return ['plain','white','light', 'dim', 'dark'].includes(value)
       },
     },
-    size: String,
+    size: {
+      type: String,
+      required: true,
+      default: "medium",
+      info: "tiny, small, medium or large",
+      validator(value) {
+        return ['tiny','small', 'medium', 'large'].includes(value)
+      },
+    },
     icon: {
       type: String,
       required: true,
       default: "mdi:twitch",
+      info: "See <a href='https://icones.js.org' target='_blank'>icones.js.org</a>",
     },
-    iconSize: String
+    iconSize: {
+      type: String,
+      required: true,
+      default: "medium",
+      info: "tiny, small, medium or large",
+      validator(value) {
+        return ['tiny','small', 'medium', 'large'].includes(value)
+      },
+    }
   },
 }
 </script>
