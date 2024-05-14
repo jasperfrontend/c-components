@@ -18,9 +18,10 @@
       @props-confirmed="addComponentWithProps"
     />
     <div class="container" id="screenshot" ref="container">
+      
       <vue-draggable-resizable
         v-for="(draggableRef, index) in draggableRefs"
-        :key="index"
+        :key="`draggable-${index}-${draggableRef.component}`"
         class="draggable"
         ref="draggableElements"
         :grid="[20, 20]"
@@ -28,8 +29,9 @@
         :y="0"
         :parent="limitDraggingToContainer"
       >
-        <componentMap[draggableRef.component] v-bind="draggableRef.props" />
+        <component :is="componentMap[draggableRef.component]" v-bind="componentMap[draggableRef.props]"></component>
       </vue-draggable-resizable>
+
     </div>
     <div class="options">
       <label>
@@ -42,7 +44,6 @@
 </template>
 
 <script setup>
-import { useDraggable } from '@/useDraggable';
 import { ref } from 'vue';
 import domtoimage from 'dom-to-image';
 
@@ -86,13 +87,10 @@ function getComponentProps(componentName) {
   return {};
 }
 
-
 const componentOptions = Object.keys(componentMap);
-
 const selectedComponent = ref(null);
 const showPropsModal = ref(false);
-
-const { draggableRefs } = useDraggable({ gridSize: 20 });
+const draggableRefs = ref([]);
 const limitDraggingToContainer = ref(true);
 
 const openPropsModal = () => {
@@ -100,7 +98,6 @@ const openPropsModal = () => {
 };
 
 const addComponentWithProps = (props) => {
-  console.log(props);
   draggableRefs.value.push({ x: 0, y: 0, component: selectedComponent.value, props });
   showPropsModal.value = false;
 };
@@ -118,6 +115,7 @@ const captureScreenshot = () => {
       console.error('Oops, something went wrong!', error);
     });
 };
+
 </script>
 
 <style scoped>

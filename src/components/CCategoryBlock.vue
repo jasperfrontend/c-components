@@ -3,8 +3,8 @@ export default {
   props: {
     skin: {
       type: [String, null],
-      required: true,
-      default: "dim",
+      required: false,
+      default: "white",
       validator(value) {
         return ['white', 'light', 'dim', 'dark'].includes(value)
       },

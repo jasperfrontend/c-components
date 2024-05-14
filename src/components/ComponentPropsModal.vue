@@ -25,7 +25,6 @@ export default {
   },
   methods: {
     confirmProps() {
-      console.log(this.props);
       this.$emit('props-confirmed', this.props);
     }
   },
