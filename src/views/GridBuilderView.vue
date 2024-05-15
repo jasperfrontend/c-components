@@ -21,7 +21,7 @@
       
       <vue-draggable-resizable
         v-for="(draggableRef, index) in draggableRefs"
-        :key="`draggable-${index}-${draggableRef.component}`"
+        :key="index"
         class="draggable"
         ref="draggableElements"
         :grid="[20,20]"
@@ -42,7 +42,9 @@
       </div>
       <div class="option">
         <label>
-          <button @click="captureScreenshot">Capture Screenshot</button>
+          
+          <button @click="captureScreenshot">Capture Screenshot</button><br>
+          This doesn't work on Firefox for now
         </label>
       </div>
     </div>
@@ -71,7 +73,6 @@ import CColor from '@/components/CColor.vue';
 import CGradient from '@/components/CGradient.vue';
 import CMeme from '@/components/CMeme.vue'
 
-// Define a map of component names to their respective components
 const componentMap = {
   CBar,
   CCategory,
@@ -149,11 +150,9 @@ const captureScreenshot = () => {
   position: absolute;
   top: 0;
   left: 0;
-  /* Center the content */
   align-items: center;
   display: flex;
   justify-content: center;
-  /* Indicate that the element is draggable */
   cursor: move;
   user-select: none;
   touch-action: none;
