@@ -8,11 +8,20 @@ for sharing on any social media platform that supports 9/16 graphics (Instagram 
 
 ## This repository contains the current components
 
-Built with [Vue3](https://vuejs.org), [Vite](https://vitejs.dev/), [Iconify](https://iconify.design/) and [Open Props](https://open-props.style/).
+Built with [Vue](https://vuejs.org), [Vite](https://vitejs.dev/), [Iconify](https://iconify.design/), [Memegen.link](https://memegen.link/) and [Open Props](https://open-props.style/).
 
 ## Demo
 
-[View demo of the current components](https://c-components.onrender.com/).
+[▶ Demo Components](https://c-components.onrender.com/).
+[▶ Demo Builder](https://c-components.onrender.com/builder).
+[▶ Demo Result](https://c-components.onrender.com/1).
+
+## Current state of the project (May 2024)
+
+In heavy development. I will still call this version 0.0.0 as basically it's just a scaffold at this point. 
+Functionally it 'works' but the UX of the Builder is god-awful at this point. 
+
+---
 
 ## Project Setup
 
