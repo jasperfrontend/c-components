@@ -9,6 +9,7 @@ export default {
       type: String,
       required: true,
       default: "bar",
+      info: "bar or plain",
       validator(value) {
         return ['bar','plain'].includes(value)
       },
@@ -17,6 +18,7 @@ export default {
       type: [String, null],
       required: true,
       default: "dim",
+      info: "white, light, dim or dark",
       validator(value) {
         return ['white','light', 'dim', 'dark'].includes(value)
       },
@@ -25,11 +27,16 @@ export default {
       type: [String, null],
       required: true,
       default: "medium",
+      info: "tiny, small, medium or large",
+      validator(value) {
+        return ['tiny','small', 'medium', 'large'].includes(value)
+      },
     },
     textSize: {
       type: [String, null],
       required: true,
       default: "medium",
+      info: "tiny, small, medium or large",
       validator(value) {
         return ['tiny','small', 'medium', 'large'].includes(value)
       },

@@ -67,6 +67,9 @@ import CStreamCategory from '@/components/CStreamCategory.vue';
 import CStreamerName from '@/components/CStreamerName.vue';
 import CText from '@/components/CText.vue';
 import ComponentPropsModal from '@/components/ComponentPropsModal.vue';
+import CColor from '@/components/CColor.vue';
+import CGradient from '@/components/CGradient.vue';
+import CMeme from '@/components/CMeme.vue'
 
 // Define a map of component names to their respective components
 const componentMap = {
@@ -74,15 +77,19 @@ const componentMap = {
   CCategory,
   CCategoryBlock,
   CCollage,
+  CColor,
+  CGradient,
   CGiphy,
   CIcon,
   CImage,
   CLine,
+  CMeme,
   CPills,
   CSpacer,
   CStreamCategory,
   CStreamerName,
   CText,
+
 };
 
 function getComponentProps(componentName) {
