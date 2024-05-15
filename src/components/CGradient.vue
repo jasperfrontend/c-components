@@ -26,12 +26,12 @@ export default {
 </script>
 
 <template>
-  <div class="c c-gradient" :style="bgcolor" style="width: 100%; height: 100%;">  
+  <div class="c c-gradient" :style="bgcolor">  
   </div>
 </template>
 
 <style>
-.c.c-color {
+.c.c-gradient {
   width: 100%;
   height: 100%;
 }
